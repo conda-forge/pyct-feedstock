@@ -16,7 +16,7 @@ build:
   script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
@@ -32,6 +32,7 @@ test:
 about:
   home: http://github.com/pyviz/pyct
   license: BSD 3-Clause
+  license_family: BSD
   license_file: LICENSE
   summary: python package common tasks for users (e.g. copy examples, fetch data, ...)
 
