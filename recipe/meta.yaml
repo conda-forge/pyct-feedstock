@@ -1,26 +1,21 @@
 {% set name = "pyct" %}
-{% set version = "0.4.3" %}
-{% set sha256 = "2e74b0bf43d7428a76d0dc6ecb8b8949f090f25e286bc44682de05a74ff89eab" %}
+{% set version = "0.4.5" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
-source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
-  sha256: {{ sha256 }}
-
 build:
   number: 0
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
   host:
     - python
     - pip
   run:
-    - python >=2.7
+    - python
+    - pyct-core ={{ version }}
     - pyyaml
     - requests
 
@@ -33,8 +28,10 @@ about:
   home: http://github.com/pyviz/pyct
   license: BSD 3-Clause
   license_family: BSD
-  license_file: LICENSE
-  summary: python package common tasks for users (e.g. copy examples, fetch data, ...)
+  license_file: LICENSE.txt
+  summary: 'Python package common tasks for users (e.g. copy examples, fetch data, ...)'
+  doc_url: https://github.com/pyviz/pyct
+  dev_url: https://github.com/pyviz/pyct
 
 extra:
   recipe-maintainers:
