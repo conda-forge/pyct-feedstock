@@ -1,8 +1,7 @@
-{% set name = "pyct" %}
 {% set version = "0.4.5" %}
 
 package:
-  name: {{ name }}
+  name: pyct
   version: {{ version }}
 
 build:
@@ -15,7 +14,7 @@ requirements:
     - pip
   run:
     - python
-    - pyct-core ={{ version }}
+    - pyct-core {{ version }}
     - pyyaml
     - requests
 
@@ -26,9 +25,10 @@ test:
 
 about:
   home: http://github.com/pyviz/pyct
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_family: BSD
-  license_file: LICENSE.txt
+  # in pyct-core
+  # license_file: LICENSE.txt
   summary: 'Python package common tasks for users (e.g. copy examples, fetch data, ...)'
   doc_url: https://github.com/pyviz/pyct
   dev_url: https://github.com/pyviz/pyct
