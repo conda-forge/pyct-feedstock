@@ -1,4 +1,4 @@
-{% set version = "0.4.5" %}
+{% set version = "0.4.6" %}
 
 package:
   name: pyct
@@ -22,6 +22,9 @@ test:
   imports:
     - pyct
     - pyct.cmd
+  requires:
+    - flake8
+    - pytest
 
 about:
   home: http://github.com/pyviz/pyct
