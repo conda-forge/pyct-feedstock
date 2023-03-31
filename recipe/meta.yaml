@@ -1,4 +1,4 @@
-{% set version = "0.4.6" %}
+{% set version = "0.4.8" %}
 
 package:
   name: pyct
@@ -7,6 +7,8 @@ package:
 build:
   number: 0
   noarch: python
+  entry_points:
+    - pyct=pyct.__main__:main
 
 requirements:
   host:
@@ -25,17 +27,24 @@ test:
   requires:
     - flake8
     - pytest
+  commands:
+    - pytest -v --pyargs pyct
+    - pyct --help
+    - pyct --version
+    - pyct report --help
+    - pyct report pyct python
 
 about:
-  home: http://github.com/pyviz/pyct
+  home: http://github.com/pyviz-dev/pyct
   license: BSD-3-Clause
   license_family: BSD
   # in pyct-core
   # license_file: LICENSE.txt
   summary: 'Python package common tasks for users (e.g. copy examples, fetch data, ...)'
-  doc_url: https://github.com/pyviz/pyct
-  dev_url: https://github.com/pyviz/pyct
+  doc_url: https://github.com/pyviz-dev/pyct
+  dev_url: https://github.com/pyviz-dev/pyct
 
 extra:
   recipe-maintainers:
     - ocefpaf
+    - jbednar
