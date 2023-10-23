@@ -22,7 +22,7 @@ outputs:
       noarch: python
       entry_points:
         - pyct=pyct.__main__:main
-      script: {{ PYTHON }} -m pip install . -vv
+      script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation -vv .
 
     requirements:
       run_constrained:
