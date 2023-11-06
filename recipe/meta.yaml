@@ -1,7 +1,7 @@
 {% set version = "0.5.0" %}
 
 package:
-  name: pyct-packages
+  name: pyct
   version: {{ version }}
 
 source:
@@ -9,71 +9,46 @@ source:
   sha256: dd9f4ac5cbd8e37c352c04036062d3c5f67efec76d404761ef16b0cbf26aa6a0
 
 build:
+  entry_points:
+    - pyct=pyct.__main__:main
   noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
   number: 0
 
 requirements:
-  build:
+  host:
     - python >=3.7
+    - param >=1.7.0
+    - pip
+  run:
+    - python >=3.7
+    - param >=1.7.0
+    - setuptools >=61.0
+    # cli
+    - pyyaml
+    - requests
+  run_constrained:
+    - pyct-core <0
 
-outputs:
-  - name: pyct-core
-    build:
-      noarch: python
-      entry_points:
-        - pyct=pyct.__main__:main
-      script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation -vv .
-
-    requirements:
-      run_constrained:
-        - pyct {{ version }}
-      host:
-        - python >=3.7
-        - param >=1.7.0
-        - pip
-      run:
-        - python >=3.7
-        - param >=1.7.0
-        - setuptools >=61.0
-        # cli
-        - pyyaml
-        - requests
-
-    test:
-      imports:
-        - pyct
-      commands:
-        - pip check
-        - pyct --help
-      requires:
-        - pip
-
-  - name: pyct
-    build:
-      noarch: python
-
-    requirements:
-      host:
-        - python >=3.7
-        - pip
-      run:
-        - {{ pin_subpackage('pyct-core', exact=True) }}
-
-    test:
-      imports:
-        - pyct
-        - pyct.cmd
+test:
+  imports:
+    - pyct
+    - pyct.cmd
+  commands:
+    - pip check
+    - pyct --help
+  requires:
+    - pip
 
 about:
   home: https://github.com/holoviz-dev/pyct
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
-  summary: Common tasks for package building (e.g. bundle examples)
+  summary: Python package common tasks for users (e.g. copy examples, fetch data, ...)
   doc_url: https://github.com/holoviz-dev/pyct#pyctbuild
   dev_url: https://github.com/holoviz-dev/pyct
 
 extra:
   recipe-maintainers:
-    - ceball
     - ocefpaf
