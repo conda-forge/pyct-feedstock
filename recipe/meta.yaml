@@ -12,12 +12,13 @@ build:
   entry_points:
     - pyct=pyct.__main__:main
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 1
 
 requirements:
   host:
     - python {{ python_min }}
+    - setuptools >=61.0
     - param >=1.7.0
     - pip
   run:
