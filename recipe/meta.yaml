@@ -5,23 +5,24 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/pyct/pyct-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/p/pyct/pyct-{{ version }}.tar.gz
   sha256: dd9f4ac5cbd8e37c352c04036062d3c5f67efec76d404761ef16b0cbf26aa6a0
 
 build:
   entry_points:
     - pyct=pyct.__main__:main
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
+    - setuptools >=61.0
     - param >=1.7.0
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - param >=1.7.0
     - setuptools >=61.0
     # cli
@@ -39,6 +40,7 @@ test:
     - pyct --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/holoviz-dev/pyct
