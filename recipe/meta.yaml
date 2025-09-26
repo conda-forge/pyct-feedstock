@@ -1,4 +1,4 @@
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
 
 package:
   name: pyct
@@ -6,14 +6,14 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/pyct/pyct-{{ version }}.tar.gz
-  sha256: dd9f4ac5cbd8e37c352c04036062d3c5f67efec76d404761ef16b0cbf26aa6a0
+  sha256: d4e513b2cf35b6165605ae5fce5f2a49985bc67473c579de85134b8c71d374a8
 
 build:
   entry_points:
     - pyct=pyct.__main__:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:

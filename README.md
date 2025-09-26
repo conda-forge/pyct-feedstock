@@ -148,5 +148,6 @@ Feedstock Maintainers
 =====================
 
 * [@apmorton](https://github.com/apmorton/)
+* [@maximlt](https://github.com/maximlt/)
 * [@ocefpaf](https://github.com/ocefpaf/)
 
